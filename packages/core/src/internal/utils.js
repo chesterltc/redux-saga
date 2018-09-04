@@ -19,12 +19,15 @@ export function hasOwn(object, property) {
 }
 
 export const object = {
-  assign(target, source) {
-    for (let i in source) {
-      if (hasOwn(source, i)) {
-        target[i] = source[i]
+  assign(target, ...sources) {
+    sources.forEach(source => {
+      for (let key in source) {
+        if (hasOwn(source, key)) {
+          target[key] = source[key]
+        }
       }
-    }
+    })
+    return target
   },
 }
 
